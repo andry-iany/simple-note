@@ -6,7 +6,7 @@ const FilterForm = () => {
       <Form.Control
         type="search"
         placeholder="Search note..."
-        className="rounded-pill"
+        className="rounded-pill border-2 mb-3"
       />
     </Form>
   );

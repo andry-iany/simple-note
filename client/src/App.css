@@ -5,3 +5,15 @@
 .text-orange {
   color: #d62828;
 }
+
+.border-gray {
+  border: 1px solid #dee2e6;
+}
+.border-orange {
+  border: 1px solid #d62828;
+}
+
+input:focus {
+  border-color: #d62828 !important;
+  box-shadow: none !important;
+}
