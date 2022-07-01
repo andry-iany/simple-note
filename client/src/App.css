@@ -13,7 +13,8 @@
   border: 1px solid #d62828;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border-color: #d62828 !important;
   box-shadow: none !important;
 }
