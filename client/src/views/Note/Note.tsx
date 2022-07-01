@@ -33,8 +33,8 @@ const Note = () => {
           <Row className="h-100">
             <Col className="h-100">
               <NoteEditForm
-                note={preview}
                 setNote={setPreview}
+                initialNote={note}
                 handleSubmit={handleSubmitEdit}
                 handleCancel={handleCancelEdit}
               />

@@ -3,15 +3,15 @@ import { Button, Form } from "react-bootstrap";
 import { INote } from "./Note";
 
 export interface INoteEditForm {
-  note: INote;
   setNote: (note: INote | ((note: INote) => INote)) => void;
   handleSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void;
   handleCancel: (e: React.SyntheticEvent) => void;
+  initialNote?: INote;
 }
 
 const NoteEditForm: FC<INoteEditForm> = ({
-  note,
   setNote,
+  initialNote,
   handleSubmit,
   handleCancel,
 }) => {
@@ -38,14 +38,14 @@ const NoteEditForm: FC<INoteEditForm> = ({
           name="title"
           className="border-2"
           placeholder="The title of the note..."
-          defaultValue={note.title}
+          defaultValue={initialNote?.title || ""}
         />
       </Form.Group>
       <Form.Group className="mb-3 h-100">
         <Form.Control
           as="textarea"
           name="body"
-          defaultValue={note.body}
+          defaultValue={initialNote?.body || ""}
           style={{ resize: "none" }}
           className="border-2 h-100"
           placeholder="The body of the note..."
