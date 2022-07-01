@@ -1,17 +1,13 @@
-import { FC } from "react";
 import Markdown from "markdown-to-jsx";
-import { INote } from "./Note";
+import useNotePreview from "./hooks/useNotePreview";
 
-interface INotePreview {
-  note: INote;
-}
-
-const NotePreview: FC<INotePreview> = ({ note: { title, body } }) => {
+const NotePreview = () => {
+  const { note } = useNotePreview();
   return (
     <div className="text-break d-flex flex-column">
-      <h1 className="mb-3">{title}</h1>
+      <h1 className="mb-3">{note.title}</h1>
       <div className="h-100">
-        <Markdown>{body}</Markdown>
+        <Markdown>{note.body}</Markdown>
       </div>
     </div>
   );

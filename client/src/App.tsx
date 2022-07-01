@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row } from "react-bootstrap";
 import Note from "./views/Note/Note";
+import NoteContextProvider from "./views/Note/contexts/NoteContext";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
           <SideLinks />
         </Col>
         <Col className="p-0">
-          <Note />
+          <NoteContextProvider>
+            <Note />
+          </NoteContextProvider>
         </Col>
       </Row>
     </div>

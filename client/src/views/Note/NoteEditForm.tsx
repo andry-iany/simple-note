@@ -1,30 +1,8 @@
-import React, { FC, FormEvent } from "react";
 import { Button, Form } from "react-bootstrap";
-import { INote } from "./Note";
+import useNoteEditForm from "./hooks/useNoteEditForm";
 
-export interface INoteEditForm {
-  setNote: (note: INote | ((note: INote) => INote)) => void;
-  handleSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void;
-  handleCancel: (e: React.SyntheticEvent) => void;
-  initialNote?: INote;
-}
-
-const NoteEditForm: FC<INoteEditForm> = ({
-  setNote,
-  initialNote,
-  handleSubmit,
-  handleCancel,
-}) => {
-  const handleChange = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
-    const inputName = target.name;
-
-    if (inputName === "title" || inputName === "body") {
-      setNote((note) => {
-        return { ...note, [inputName]: target.value };
-      });
-    }
-  };
+const NoteEditForm = () => {
+  const { note, handleCancel, handleChange, handleSubmit } = useNoteEditForm();
 
   return (
     <Form
@@ -38,14 +16,14 @@ const NoteEditForm: FC<INoteEditForm> = ({
           name="title"
           className="border-2"
           placeholder="The title of the note..."
-          defaultValue={initialNote?.title || ""}
+          defaultValue={note.title}
         />
       </Form.Group>
       <Form.Group className="mb-3 h-100">
         <Form.Control
           as="textarea"
           name="body"
-          defaultValue={initialNote?.body || ""}
+          defaultValue={note.body}
           style={{ resize: "none" }}
           className="border-2 h-100"
           placeholder="The body of the note..."

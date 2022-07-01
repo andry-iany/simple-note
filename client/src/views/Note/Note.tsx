@@ -14,17 +14,8 @@ export interface INote {
 }
 
 const Note = () => {
-  const {
-    note,
-    preview,
-    isEditing,
-    setPreview,
-    handleDelete,
-    handleStartNew,
-    handleStartEdit,
-    handleCancelEdit,
-    handleSubmitEdit,
-  } = useNote();
+  const { isEditing, handleStartNew, handleDelete, handleStartEdit } =
+    useNote();
 
   if (isEditing) {
     return (
@@ -32,15 +23,10 @@ const Note = () => {
         <div className="bg-light p-4 h-100">
           <Row className="h-100">
             <Col className="h-100">
-              <NoteEditForm
-                setNote={setPreview}
-                initialNote={note}
-                handleSubmit={handleSubmitEdit}
-                handleCancel={handleCancelEdit}
-              />
+              <NoteEditForm />
             </Col>
             <Col className="h-100 overflow-auto">
-              <NotePreview note={preview} />
+              <NotePreview />
             </Col>
           </Row>
         </div>
@@ -69,7 +55,7 @@ const Note = () => {
                   className="icon-rounded"
                 />
               </div>
-              <NotePreview note={note} />
+              <NotePreview />
             </Col>
           </Row>
         </div>
