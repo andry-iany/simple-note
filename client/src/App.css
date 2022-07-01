@@ -1,20 +1,30 @@
-/* .App {
-  background-color: #282c34;
-} */
+:root {
+  --orange: #d62828;
+  --gray: #dee2e6;
+}
 
 .text-orange {
-  color: #d62828;
+  color: var(--orange);
 }
 
 .border-gray {
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--gray);
 }
 .border-orange {
-  border: 1px solid #d62828;
+  border: 1px solid;
+}
+
+.icon-rounded {
+  border: 2px solid var(--gray);
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+.icon-rounded:hover {
+  border-color: var(--orange);
 }
 
 input:focus,
 textarea:focus {
-  border-color: #d62828 !important;
+  border-color: var(--orange) !important;
   box-shadow: none !important;
 }
