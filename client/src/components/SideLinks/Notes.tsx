@@ -73,7 +73,7 @@ const Notes = () => {
 };
 
 const Note: FC<INote> = ({ title, snippet }) => {
-  const [open, setOpen] = useState(false);
+  const [isSnippetOpen, setIsSnippetOpen] = useState(false);
 
   return (
     <div className="border rounded px-3 py-2 mb-3 shadow-sm">
@@ -81,9 +81,9 @@ const Note: FC<INote> = ({ title, snippet }) => {
         <span>{title}</span>
         <Image
           src={chevron}
-          onClick={() => setOpen(!open)}
+          onClick={() => setIsSnippetOpen(!isSnippetOpen)}
           className={`note-img rounded-circle position-absolute top-50 end-0 translate-middle-y p-1 ${
-            open ? "border-orange" : "border-gray"
+            isSnippetOpen ? "border-orange" : "border-gray"
           }`}
           style={{
             cursor: "pointer",
@@ -92,7 +92,7 @@ const Note: FC<INote> = ({ title, snippet }) => {
           }}
         />
       </p>
-      <Collapse in={open}>
+      <Collapse in={isSnippetOpen}>
         <p className="mb-0 overflow-hidden" style={{ maxHeight: "3rem" }}>
           <small>{snippet}</small>
         </p>
