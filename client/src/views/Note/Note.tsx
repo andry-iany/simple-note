@@ -7,6 +7,7 @@ import useNote from "./hooks/useNote";
 import trash from "../../assets/icons/trash.svg";
 import pencil from "../../assets/icons/pencil.svg";
 import plus from "../../assets/icons/plus.svg";
+import NoteContextProvider from "./contexts/NoteContext";
 
 export interface INote {
   title: string;
@@ -15,6 +16,14 @@ export interface INote {
 
 export const isNote = (note: any): note is INote => {
   return typeof note?.title === "string" && typeof note?.body === "string";
+};
+
+const NoteWithNoteContext = () => {
+  return (
+    <NoteContextProvider>
+      <Note />
+    </NoteContextProvider>
+  );
 };
 
 const Note = () => {
@@ -68,4 +77,4 @@ const Note = () => {
   }
 };
 
-export default Note;
+export default NoteWithNoteContext;
