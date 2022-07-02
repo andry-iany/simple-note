@@ -1,20 +1,30 @@
+import { useState } from "react";
 import useCustContext from "../../../hooks/useCustContext";
 import { NoteContext } from "../contexts/NoteContext";
 import { INoteActionType } from "../reducers/noteReducer";
 
 const useNoteEditForm = () => {
   const { note, dispatch } = useCustContext(NoteContext);
+  const [validated, setValidated] = useState(false);
 
   const handleChange = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
     const note = {
-      title: (e.currentTarget.formTitle?.value as string) || "",
-      body: (e.currentTarget.formBody?.value as string) || "",
+      title: (form.formTitle?.value as string) || "",
+      body: (form.formBody?.value as string) || "",
     };
     dispatch({ type: INoteActionType.UPDATE_PREVIEW, payload: note });
   };
 
-  const handleSubmit = () => {
-    dispatch({ type: INoteActionType.SUBMIT_EDIT });
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      dispatch({ type: INoteActionType.SUBMIT_EDIT });
+    }
+    setValidated(true);
   };
 
   const handleCancel = () => {
@@ -23,6 +33,7 @@ const useNoteEditForm = () => {
 
   return {
     note,
+    validated,
     handleCancel,
     handleChange,
     handleSubmit,

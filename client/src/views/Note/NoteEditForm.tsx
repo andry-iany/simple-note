@@ -2,22 +2,29 @@ import { Button, Form } from "react-bootstrap";
 import useNoteEditForm from "./hooks/useNoteEditForm";
 
 const NoteEditForm = () => {
-  const { note, handleCancel, handleChange, handleSubmit } = useNoteEditForm();
+  const { note, validated, handleCancel, handleChange, handleSubmit } =
+    useNoteEditForm();
 
   return (
     <Form
+      noValidate
+      validated={validated}
       onChange={handleChange}
       onSubmit={handleSubmit}
       className="h-100 d-flex flex-column"
     >
       <Form.Group className="mb-3">
         <Form.Control
+          required
           type="text"
           name="formTitle"
           className="border-2"
           placeholder="The title of the note..."
           defaultValue={note.title}
         />
+        <Form.Control.Feedback type="invalid">
+          Please provide a title to your note
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3 h-100">
         <Form.Control
