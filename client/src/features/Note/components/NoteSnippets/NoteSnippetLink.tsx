@@ -1,12 +1,13 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { Collapse, Image } from "react-bootstrap";
 import { INoteSnippet } from "../../interfaces/INote";
 
 import chevron from "../../../../assets/icons/chevron-down.svg";
+import useNoteSnippetLink from "../../hooks/useNoteSnippetLink";
 
 const NoteSnippetLink: FC<INoteSnippet> = ({ id, title, snippet }) => {
-  const [isSnippetOpen, setIsSnippetOpen] = useState(false);
+  const { isSnippetOpen, toggleIsSnippetOpen } = useNoteSnippetLink();
 
   return (
     <Link
@@ -17,7 +18,7 @@ const NoteSnippetLink: FC<INoteSnippet> = ({ id, title, snippet }) => {
         <span>{title}</span>
         <Image
           src={chevron}
-          onClick={() => setIsSnippetOpen(!isSnippetOpen)}
+          onClick={toggleIsSnippetOpen}
           className={`note-img rounded-circle position-absolute top-50 end-0 translate-middle-y p-1 ${
             isSnippetOpen ? "border-orange" : "border-gray"
           }`}

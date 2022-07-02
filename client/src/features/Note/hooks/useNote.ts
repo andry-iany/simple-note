@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import useCustContext from "../../../hooks/useCustContext";
 import { NoteContext } from "../contexts/NoteContext";
 import { INoteActionType } from "../reducers/noteReducer";
 
 const useNote = () => {
   const { isEditing, dispatch } = useCustContext(NoteContext);
+  const params = useParams();
+  console.log({ params });
 
   const handleStartNew = () => {
     dispatch({ type: INoteActionType.CREATE });

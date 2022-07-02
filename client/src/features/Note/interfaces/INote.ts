@@ -3,3 +3,14 @@ export interface INoteSnippet {
   title: string;
   snippet: string;
 }
+
+export interface INoteDetailed {
+  id: number | string;
+  title: string;
+  body: string;
+}
+
+export interface INotePreview {
+  title: string;
+  body: string;
+}

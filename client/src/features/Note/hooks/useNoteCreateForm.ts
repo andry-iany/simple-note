@@ -1,10 +1,7 @@
+import { INoteCreateForm } from "./../components/NoteCreate/NoteCreateForm";
 import { useState } from "react";
-import useCustContext from "../../../hooks/useCustContext";
-import { NoteContext } from "../contexts/NoteContext";
-import { INoteActionType } from "../reducers/noteReducer";
 
-const useNoteEditForm = () => {
-  const { note, dispatch } = useCustContext(NoteContext);
+const useNoteCreateForm = (args: INoteCreateForm) => {
   const [validated, setValidated] = useState(false);
 
   const handleChange = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -13,7 +10,7 @@ const useNoteEditForm = () => {
       title: (form.formTitle?.value as string) || "",
       body: (form.formBody?.value as string) || "",
     };
-    dispatch({ type: INoteActionType.UPDATE_PREVIEW, payload: note });
+    args.handleChange(note);
   };
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -22,22 +19,21 @@ const useNoteEditForm = () => {
       e.preventDefault();
       e.stopPropagation();
     } else {
-      dispatch({ type: INoteActionType.SUBMIT_EDIT });
+      const note = {
+        title: (form.formTitle?.value as string) || "",
+        body: (form.formBody?.value as string) || "",
+      };
+      args.handleSubmit(note);
     }
     setValidated(true);
   };
 
-  const handleCancel = () => {
-    dispatch({ type: INoteActionType.CANCEL_EDIT });
-  };
-
   return {
-    note,
+    initialNote: args.initialNote,
     validated,
-    handleCancel,
     handleChange,
     handleSubmit,
   };
 };
 
-export default useNoteEditForm;
+export default useNoteCreateForm;

@@ -1,9 +1,18 @@
+import { FC } from "react";
 import { Button, Form } from "react-bootstrap";
-import useNoteEditForm from "../hooks/useNoteEditForm";
+import { Link } from "react-router-dom";
+import useNoteCreateForm from "../../hooks/useNoteCreateForm";
+import { INotePreview } from "../../interfaces/INote";
 
-const NoteEditForm = () => {
-  const { note, validated, handleCancel, handleChange, handleSubmit } =
-    useNoteEditForm();
+export interface INoteCreateForm {
+  initialNote?: INotePreview;
+  handleChange: (note: INotePreview) => void;
+  handleSubmit: (note: INotePreview) => void;
+}
+
+const NoteCreateForm: FC<INoteCreateForm> = (props) => {
+  const { initialNote, validated, handleChange, handleSubmit } =
+    useNoteCreateForm(props);
 
   return (
     <Form
@@ -20,7 +29,7 @@ const NoteEditForm = () => {
           name="formTitle"
           className="border-2"
           placeholder="The title of the note..."
-          defaultValue={note.title}
+          defaultValue={initialNote?.title}
         />
         <Form.Control.Feedback type="invalid">
           Please provide a title to your note
@@ -30,7 +39,7 @@ const NoteEditForm = () => {
         <Form.Control
           as="textarea"
           name="formBody"
-          defaultValue={note.body}
+          defaultValue={initialNote?.body}
           style={{ resize: "none" }}
           className="border-2 h-100"
           placeholder="The body of the note..."
@@ -44,17 +53,14 @@ const NoteEditForm = () => {
         >
           Save
         </Button>
-        <Button
-          type="button"
-          variant="danger"
-          onClick={handleCancel}
-          className="mx-2 rounded-pill px-4"
-        >
-          Cancel
-        </Button>
+        <Link to="/" className="mx-2">
+          <Button variant="danger" className="rounded-pill px-4">
+            Cancel
+          </Button>
+        </Link>
       </Form.Group>
     </Form>
   );
 };
 
-export default NoteEditForm;
+export default NoteCreateForm;
