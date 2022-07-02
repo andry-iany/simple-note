@@ -1,6 +1,6 @@
 import { Col, Row } from "react-bootstrap";
-import NotePreview from "./NotePreview";
-import NoteEditForm from "./NoteEditForm";
+import NotePreview from "./components/NotePreview";
+import NoteEditForm from "./components/NoteEditForm";
 import IconRounded from "../../components/IconRounded/IconRounded";
 import useNote from "./hooks/useNote";
 

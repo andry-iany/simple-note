@@ -1,5 +1,5 @@
 import Markdown from "markdown-to-jsx";
-import useNotePreview from "./hooks/useNotePreview";
+import useNotePreview from "../hooks/useNotePreview";
 
 const NotePreview = () => {
   const { note, preview, isEditing } = useNotePreview();

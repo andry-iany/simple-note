@@ -1,5 +1,5 @@
 import { Button, Form } from "react-bootstrap";
-import useNoteEditForm from "./hooks/useNoteEditForm";
+import useNoteEditForm from "../hooks/useNoteEditForm";
 
 const NoteEditForm = () => {
   const { note, validated, handleCancel, handleChange, handleSubmit } =

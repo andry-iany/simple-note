@@ -1,104 +1,82 @@
-import { FC, useState } from "react";
-import { Collapse, Image } from "react-bootstrap";
-import chevron from "../../assets/icons/chevron-down.svg";
-
-interface INote {
-  title: string;
-  snippet: string;
-}
-
-const notes: INote[] = [
+import { INoteSnippet } from "../../Note/interfaces/INote";
+import { useEffect, useState } from "react";
+const initialNoteSnippets = [
   {
+    id: 1,
     title: "some heading goes herehereherehereherehereherehere",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 2,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 3,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 4,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 5,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 6,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 7,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 8,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 9,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 10,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 11,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 12,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
   {
+    id: 13,
     title: "some heading goes here",
     snippet: "what about the snippet? don't worry we have section for that",
   },
 ];
 
-const Notes = () => {
-  return (
-    <div className="py-3 overflow-auto mb-5">
-      {notes.map((note, idx) => (
-        <Note key={idx} {...note} />
-      ))}
-    </div>
-  );
+const useSideControls = () => {
+  const [noteSnippets, setNoteSnippets] = useState<INoteSnippet[] | null>(null);
+
+  useEffect(() => {
+    // fetch the initial snippets
+    setNoteSnippets(initialNoteSnippets);
+  }, []);
+
+  return { noteSnippets };
 };
 
-const Note: FC<INote> = ({ title, snippet }) => {
-  const [isSnippetOpen, setIsSnippetOpen] = useState(false);
-
-  return (
-    <div className="border rounded px-3 py-2 mb-3 shadow-sm">
-      <p className="text-secondary mb-0 text-truncate pe-4 position-relative">
-        <span>{title}</span>
-        <Image
-          src={chevron}
-          onClick={() => setIsSnippetOpen(!isSnippetOpen)}
-          className={`note-img rounded-circle position-absolute top-50 end-0 translate-middle-y p-1 ${
-            isSnippetOpen ? "border-orange" : "border-gray"
-          }`}
-          style={{
-            cursor: "pointer",
-            height: "1.3rem",
-            width: "1.3rem",
-          }}
-        />
-      </p>
-      <Collapse in={isSnippetOpen}>
-        <p className="mb-0 overflow-hidden" style={{ maxHeight: "3rem" }}>
-          <small>{snippet}</small>
-        </p>
-      </Collapse>
-    </div>
-  );
-};
-
-export default Notes;
+export default useSideControls;

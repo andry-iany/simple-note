@@ -1,4 +1,4 @@
-import { isNote } from "./../Note";
+import { isNote } from "../Note";
 import { INote } from "../Note";
 import { Reducer } from "react";
 

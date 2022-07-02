@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Logo = () => {
   return (
     <h3 className="py-4 text-orange">
-      <a href="/" className="mb-4 text-reset text-decoration-none">
+      <Link to="/" className="mb-4 text-reset text-decoration-none">
         Simple Note
-      </a>
+      </Link>
     </h3>
   );
 };
