@@ -3,6 +3,7 @@ import Logo from "../../components/Logo/Logo";
 import useSideControls from "./hooks/useSideControls";
 import NoteSnippetsWrapper from "../Note/components/NoteSnippets/NoteSnippetsWrapper";
 import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
+import EmptyNotes from "./components/EmptyNotes";
 
 const SideControls = () => {
   const { isError, isLoading, noteSnippets, handleFilterNote } =
@@ -12,8 +13,9 @@ const SideControls = () => {
     <div className="vh-100 d-flex flex-column">
       <Logo />
       <FilterForm handleFilter={handleFilterNote} />
+      <EmptyNotes isEmpty={!isLoading && !noteSnippets?.length && !isError} />
       <LoadingIndicator isLoading={isLoading} />
-      {noteSnippets && <NoteSnippetsWrapper noteSnippets={noteSnippets} />}
+      <NoteSnippetsWrapper noteSnippets={noteSnippets || []} />
     </div>
   );
 };
