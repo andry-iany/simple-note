@@ -4,7 +4,8 @@ import useSideControls from "./hooks/useSideControls";
 import NoteSnippetsWrapper from "../Note/components/NoteSnippets/NoteSnippetsWrapper";
 
 const SideControls = () => {
-  const { noteSnippets, handleFilterNote } = useSideControls();
+  const { isError, isLoading, noteSnippets, handleFilterNote } =
+    useSideControls();
 
   return (
     <div className="vh-100 d-flex flex-column">
