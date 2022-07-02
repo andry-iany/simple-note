@@ -70,13 +70,31 @@ const initialNoteSnippets = [
 
 const useSideControls = () => {
   const [noteSnippets, setNoteSnippets] = useState<INoteSnippet[] | null>(null);
+  const [filteredNoteSnippets, setFilteredNoteSnippets] = useState<
+    INoteSnippet[] | null
+  >(null);
 
   useEffect(() => {
     // fetch the initial snippets
     setNoteSnippets(initialNoteSnippets);
   }, []);
 
-  return { noteSnippets };
+  useEffect(() => {
+    setFilteredNoteSnippets(noteSnippets);
+  }, [noteSnippets]);
+
+  const handleFilterNote = (filterValue: string = "") => {
+    if (noteSnippets)
+      setFilteredNoteSnippets(filterSnippets(noteSnippets, filterValue));
+  };
+
+  return { noteSnippets: filteredNoteSnippets, handleFilterNote };
+};
+
+const filterSnippets = (snippets: INoteSnippet[], filterValue = "") => {
+  return snippets.filter((snippet) =>
+    snippet.title.toLowerCase().startsWith(filterValue.toLowerCase())
+  );
 };
 
 export default useSideControls;

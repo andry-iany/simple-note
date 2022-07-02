@@ -4,12 +4,12 @@ import useSideControls from "./hooks/useSideControls";
 import NoteSnippetsWrapper from "../Note/components/NoteSnippets/NoteSnippetsWrapper";
 
 const SideControls = () => {
-  const { noteSnippets } = useSideControls();
+  const { noteSnippets, handleFilterNote } = useSideControls();
 
   return (
     <div className="vh-100 d-flex flex-column">
       <Logo />
-      <FilterForm />
+      <FilterForm handleFilter={handleFilterNote} />
       {noteSnippets && <NoteSnippetsWrapper noteSnippets={noteSnippets} />}
     </div>
   );
