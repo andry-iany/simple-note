@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchNoteSnippet } from "../api/noteApi";
 
-const useNoteSnippetsApi = () => {
+const useFetchNoteSnippets = () => {
   const { data: noteSnippets, ...rest } = useQuery(
     "noteSnippets",
     fetchNoteSnippet
@@ -9,4 +9,4 @@ const useNoteSnippetsApi = () => {
   return { ...rest, noteSnippets };
 };
 
-export { useNoteSnippetsApi };
+export { useFetchNoteSnippets };

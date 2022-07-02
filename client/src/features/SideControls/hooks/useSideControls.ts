@@ -1,9 +1,9 @@
 import { INoteSnippet } from "../../Note/interfaces/INote";
 import { useEffect, useState } from "react";
-import { useNoteSnippetsApi } from "../../../hooks/useNoteApi";
+import { useFetchNoteSnippets } from "../../../hooks/useNoteApi";
 
 const useSideControls = () => {
-  const { noteSnippets, isLoading, isError } = useNoteSnippetsApi();
+  const { noteSnippets, isLoading, isError } = useFetchNoteSnippets();
   const [filteredNoteSnippets, setFilteredNoteSnippets] =
     useState<INoteSnippet[]>();
 
