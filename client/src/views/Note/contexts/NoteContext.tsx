@@ -1,12 +1,12 @@
 import React, { useReducer, createContext, FC } from "react";
 import noteReducer, {
   INoteState,
-  INoteAction,
+  INoteActionType,
   initialState,
 } from "../reducers/noteReducer";
 
 type INoteContext = INoteState & {
-  dispatch: React.Dispatch<INoteAction>;
+  dispatch: React.Dispatch<INoteActionType>;
 };
 
 export const NoteContext = createContext<INoteContext | null>(null);

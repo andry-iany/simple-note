@@ -1,7 +1,7 @@
 import { INote } from "../Note";
 import { Reducer } from "react";
 
-export enum INoteAction {
+export enum INoteActionType {
   CREATE = "create",
   DELETE = "delete",
   START_EDIT = "start_edit",
@@ -21,7 +21,8 @@ export const initialState = {
   isEditing: false,
 };
 
-const noteReducer: Reducer<INoteState, INoteAction> = () => {
+const noteReducer: Reducer<INoteState, INoteActionType> = (state, action) => {
+  console.log({ action, state });
   return initialState;
 };
 
