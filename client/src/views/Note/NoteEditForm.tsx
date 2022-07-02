@@ -13,7 +13,7 @@ const NoteEditForm = () => {
       <Form.Group className="mb-3">
         <Form.Control
           type="text"
-          name="title"
+          name="formTitle"
           className="border-2"
           placeholder="The title of the note..."
           defaultValue={note.title}
@@ -22,7 +22,7 @@ const NoteEditForm = () => {
       <Form.Group className="mb-3 h-100">
         <Form.Control
           as="textarea"
-          name="body"
+          name="formBody"
           defaultValue={note.body}
           style={{ resize: "none" }}
           className="border-2 h-100"

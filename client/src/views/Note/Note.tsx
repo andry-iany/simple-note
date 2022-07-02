@@ -13,6 +13,10 @@ export interface INote {
   body: string;
 }
 
+export const isNote = (note: any): note is INote => {
+  return typeof note?.title === "string" && typeof note?.body === "string";
+};
+
 const Note = () => {
   const { isEditing, handleStartNew, handleDelete, handleStartEdit } =
     useNote();

@@ -6,15 +6,13 @@ const useNote = () => {
   const { isEditing, dispatch } = useCustContext(NoteContext);
 
   const handleStartNew = () => {
-    // display form to create new note
-    dispatch(INoteActionType.CANCEL_EDIT);
+    dispatch({ type: INoteActionType.CREATE });
   };
   const handleDelete = () => {
-    // delete a note
+    dispatch({ type: INoteActionType.DELETE });
   };
   const handleStartEdit = () => {
-    // setPreview(note);
-    // setIsEditing(true);
+    dispatch({ type: INoteActionType.START_EDIT });
   };
 
   return {
