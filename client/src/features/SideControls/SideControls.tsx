@@ -10,8 +10,6 @@ const SideControls = () => {
   const { isError, isLoading, noteSnippets, handleFilterNote } =
     useSideControls();
 
-  console.log({ isError, isLoading });
-
   return (
     <div className="vh-100 d-flex flex-column">
       <Logo />
