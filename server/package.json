@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "json-server data.json --port 5678"
+  },
   "dependencies": {
     "apollo-server-express": "^3.9.0",
     "axios": "^0.27.2",

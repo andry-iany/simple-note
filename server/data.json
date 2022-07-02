@@ -1,0 +1,46 @@
+{
+  "note": [
+    {
+      "id": 1,
+      "title": "my best note ever",
+      "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
+    },
+    {
+      "id": 2,
+      "title": "my best second note ever",
+      "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
+    },
+    {
+      "id": 3,
+      "title": "my best third note ever",
+      "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
+    },
+    {
+      "id": 4,
+      "title": "my best note ever",
+      "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
+    }
+  ],
+  "note-snippets": [
+    {
+      "id": 1,
+      "title": "my best note ever",
+      "snippet": "some snippet here"
+    },
+    {
+      "id": 2,
+      "title": "my best second note ever",
+      "snippet": "some snippet here"
+    },
+    {
+      "id": 3,
+      "title": "my best third note ever",
+      "snippet": "some snippet here"
+    },
+    {
+      "id": 4,
+      "title": "my best note ever",
+      "snippet": "some snippet here"
+    }
+  ]
+}
