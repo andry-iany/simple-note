@@ -5,7 +5,7 @@ import {
 } from "./../features/Note/interfaces/INote";
 
 const url = {
-  noteSnippets: "/note",
+  noteSnippets: "/note?_sort=updatedAt&_order=desc",
   noteDetailed: "/note",
 };
 

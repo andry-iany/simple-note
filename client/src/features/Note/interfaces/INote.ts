@@ -7,6 +7,7 @@ export interface INoteDetailed {
   id: number | string;
   title: string;
   body: string;
+  updatedAt: Date;
 }
 
 export interface INotePreview {

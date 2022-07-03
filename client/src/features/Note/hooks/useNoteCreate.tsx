@@ -43,7 +43,10 @@ const useNoteCreate = () => {
   };
 
   const handleSubmit = () => {
-    noteId ? editNote([noteId, notePreview]) : createNote([notePreview]);
+    if (notePreview) {
+      const arg = { ...notePreview, updatedAt: new Date() };
+      noteId ? editNote([noteId, arg]) : createNote([arg]);
+    }
   };
 
   return {
