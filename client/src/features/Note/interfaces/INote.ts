@@ -1,7 +1,6 @@
 export interface INoteSnippet {
   id: number | string;
   title: string;
-  snippet: string;
 }
 
 export interface INoteDetailed {

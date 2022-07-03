@@ -5,7 +5,7 @@ import {
 } from "./../features/Note/interfaces/INote";
 
 const url = {
-  noteSnippets: "/note-snippets",
+  noteSnippets: "/note",
   noteDetailed: "/note",
 };
 
