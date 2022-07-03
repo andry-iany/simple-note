@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useCreateNote,
   useEditNote,
   useFetchNoteDetailed,
 } from "../../../hooks/useNoteApi";
+import useRefreshNoteSnippets from "../../SideControls/hooks/useRefreshNoteSnippets";
 import { INotePreview } from "../interfaces/INote";
 
 const useNoteCreate = () => {
@@ -16,6 +18,7 @@ const useNoteCreate = () => {
   const { noteDetailed } = useFetchNoteDetailed(noteId);
   const { createNote, data: resCreateNote } = useCreateNote();
   const { editNote, data: resEditNote } = useEditNote();
+  const refreshNoteSnippets = useRefreshNoteSnippets();
 
   useEffect(() => {
     setNoteId(params.id || 0);
@@ -30,6 +33,7 @@ const useNoteCreate = () => {
 
   useEffect(() => {
     if (resCreateNote || resEditNote) {
+      refreshNoteSnippets();
       navigate(`/note/${resCreateNote?.id || resEditNote?.id}`);
     }
   }, [resEditNote, resCreateNote]);
