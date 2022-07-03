@@ -3,6 +3,10 @@
   --gray: #dee2e6;
 }
 
+.App img {
+  max-width: 90%;
+}
+
 .text-orange {
   color: var(--orange);
 }

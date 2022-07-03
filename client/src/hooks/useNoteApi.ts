@@ -1,5 +1,10 @@
-import { useQuery } from "react-query";
-import { fetchNoteSnippets, fetchNoteDetailed } from "../api/noteApi";
+import { useMutation, useQuery } from "react-query";
+import {
+  fetchNoteSnippets,
+  fetchNoteDetailed,
+  createNote as createNoteApi,
+  editNote as editNoteApi,
+} from "../api/noteApi";
 import { INoteDetailed } from "../features/Note/interfaces/INote";
 
 export enum cacheKeys {
@@ -7,7 +12,7 @@ export enum cacheKeys {
   NOTE_DETAILED = "noteDetailed",
 }
 
-const useFetchNoteSnippets = () => {
+export const useFetchNoteSnippets = () => {
   const { data: noteSnippets, ...rest } = useQuery(
     cacheKeys.NOTE_SNIPPETS,
     () => fetchNoteSnippets()
@@ -15,7 +20,7 @@ const useFetchNoteSnippets = () => {
   return { ...rest, noteSnippets };
 };
 
-const useFetchNoteDetailed = (id: INoteDetailed["id"]) => {
+export const useFetchNoteDetailed = (id: INoteDetailed["id"]) => {
   const { data: noteDetailed, ...rest } = useQuery(
     [cacheKeys.NOTE_DETAILED, id],
     () => fetchNoteDetailed(id),
@@ -26,4 +31,22 @@ const useFetchNoteDetailed = (id: INoteDetailed["id"]) => {
   return { ...rest, noteDetailed };
 };
 
-export { useFetchNoteSnippets, useFetchNoteDetailed };
+export const useCreateNote = () => {
+  const { mutate: createNote, ...rest } = useMutation<
+    Awaited<ReturnType<typeof createNoteApi>>,
+    Error,
+    Parameters<typeof createNoteApi>,
+    unknown
+  >(async (args) => createNoteApi(...args));
+  return { ...rest, createNote };
+};
+
+export const useEditNote = () => {
+  const { mutate: editNote, ...rest } = useMutation<
+    Awaited<ReturnType<typeof editNoteApi>>,
+    Error,
+    Parameters<typeof editNoteApi>,
+    unknown
+  >(async (args) => editNoteApi(...args));
+  return { ...rest, editNote };
+};

@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useFetchNoteDetailed } from "../../../hooks/useNoteApi";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useCreateNote,
+  useEditNote,
+  useFetchNoteDetailed,
+} from "../../../hooks/useNoteApi";
 import { INotePreview } from "../interfaces/INote";
 
 const useNoteCreate = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [noteId, setNoteId] = useState<string | number>(0);
   const [notePreview, setNotePreview] = useState<INotePreview>();
 
-  const { noteDetailed, ...rest } = useFetchNoteDetailed(noteId);
+  const { noteDetailed } = useFetchNoteDetailed(noteId);
+  const { createNote, data: resCreateNote } = useCreateNote();
+  const { editNote, data: resEditNote } = useEditNote();
 
   useEffect(() => {
     setNoteId(params.id || 0);
@@ -21,19 +28,23 @@ const useNoteCreate = () => {
     });
   }, [noteDetailed]);
 
+  useEffect(() => {
+    if (resCreateNote || resEditNote) {
+      navigate(`/note/${resCreateNote?.id || resEditNote?.id}`);
+    }
+  }, [resEditNote, resCreateNote]);
+
   const handleChange = (note: INotePreview) => {
     setNotePreview(note);
   };
 
   const handleSubmit = () => {
-    //
+    noteId ? editNote([noteId, notePreview]) : createNote([notePreview]);
   };
 
   return {
-    ...rest,
     noteId,
     notePreview,
-    noteDetailed,
     handleChange,
     handleSubmit,
   };

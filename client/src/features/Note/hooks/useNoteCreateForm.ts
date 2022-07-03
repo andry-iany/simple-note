@@ -15,8 +15,8 @@ const useNoteCreateForm = (args: INoteCreateForm) => {
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
+    e.preventDefault();
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
     } else {
       const note = {

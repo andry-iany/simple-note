@@ -18,3 +18,13 @@ export const fetchNoteDetailed = async (id: INoteDetailed["id"]) => {
   const res = await api.get<INoteDetailed>(`${url.noteDetailed}/${id}`);
   return res.data;
 };
+
+export const createNote = async (body: unknown) => {
+  const res = await api.post<INoteDetailed>(`${url.noteDetailed}`, body);
+  return res.data;
+};
+
+export const editNote = async (id: INoteDetailed["id"], body: unknown) => {
+  const res = await api.put<INoteDetailed>(`${url.noteDetailed}/${id}`, body);
+  return res.data;
+};
