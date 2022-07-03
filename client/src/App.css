@@ -15,7 +15,14 @@
   border: 1px solid var(--gray);
 }
 .border-orange {
-  border: 1px solid var(--orange);
+  border: 1px solid var(--orange) !important;
+}
+
+.snippet {
+  border: 2px solid var(--gray) !important;
+}
+.snippet-active {
+  border: 2px solid var(--orange) !important;
 }
 
 .icon-rounded {
