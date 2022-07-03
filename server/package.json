@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "json-server data.json --port 5678"
+    "dev": "json-server data.json --port 5678 --static ./public/images/"
   },
   "dependencies": {
     "apollo-server-express": "^3.9.0",
