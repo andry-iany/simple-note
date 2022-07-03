@@ -28,3 +28,8 @@ export const editNote = async (id: INoteDetailed["id"], body: unknown) => {
   const res = await api.put<INoteDetailed>(`${url.noteDetailed}/${id}`, body);
   return res.data;
 };
+
+export const deleteNote = async (id: INoteDetailed["id"]) => {
+  const res = await api.delete(`${url.noteDetailed}/${id}`);
+  return res.data;
+};

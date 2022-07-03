@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useFetchNoteDetailed } from "../../../hooks/useNoteApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDeleteNote, useFetchNoteDetailed } from "../../../hooks/useNoteApi";
 
 const useNoteDetail = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [noteId, setNoteId] = useState<string | number>(0);
   const res = useFetchNoteDetailed(noteId);
+  const { deleteNote, resDataDelete } = useDeleteNote();
 
   useEffect(() => {
     setNoteId(params.id || 0);
   }, [params.id]);
 
   const handleDelete = () => {
-    //
+    const deleteConfirmed = confirm("Are you sure to delete this note?");
+    if (deleteConfirmed) deleteNote([noteId]);
   };
+
+  useEffect(() => {
+    if (resDataDelete) navigate("/");
+  }, [resDataDelete]);
 
   return {
     ...res,

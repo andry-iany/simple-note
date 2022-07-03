@@ -4,6 +4,7 @@ import {
   fetchNoteDetailed,
   createNote as createNoteApi,
   editNote as editNoteApi,
+  deleteNote as deleteNoteApi,
 } from "../api/noteApi";
 import { INoteDetailed } from "../features/Note/interfaces/INote";
 
@@ -49,4 +50,18 @@ export const useEditNote = () => {
     unknown
   >(async (args) => editNoteApi(...args));
   return { ...rest, editNote };
+};
+
+export const useDeleteNote = () => {
+  const {
+    mutate: deleteNote,
+    data: resDataDelete,
+    ...rest
+  } = useMutation<
+    Awaited<ReturnType<typeof deleteNoteApi>>,
+    Error,
+    Parameters<typeof deleteNoteApi>,
+    unknown
+  >(async (args) => deleteNoteApi(...args));
+  return { ...rest, resDataDelete, deleteNote };
 };
