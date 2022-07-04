@@ -2,45 +2,39 @@
   "note": [
     {
       "id": 1,
+      "updatedAt": "2022-07-03T17:13:25.139Z",
       "title": "my best note ever",
       "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
     },
     {
-      "id": 2,
-      "title": "my best second note ever",
-      "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
+      "title": "my best second note, then edited",
+      "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter",
+      "updatedAt": "2022-07-03T17:16:23.072Z",
+      "id": 2
     },
     {
       "id": 3,
+      "updatedAt": "2022-07-03T17:13:25.139Z",
       "title": "my best third note ever",
       "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
     },
     {
       "id": 4,
+      "updatedAt": "2022-07-03T17:13:25.139Z",
       "title": "my best note ever",
       "body": "* buy rice\n* buy chocolate\n* greet the gorgeous lady in the counter"
-    }
-  ],
-  "note-snippets": [
-    {
-      "id": 1,
-      "title": "my best note ever",
-      "snippet": "some snippet here"
     },
     {
-      "id": 2,
-      "title": "my best second note ever",
-      "snippet": "some snippet here"
+      "title": "populate it again",
+      "body": "1. one\n1. two\n1. three",
+      "updatedAt": "2022-07-04T03:34:17.398Z",
+      "id": 7
     },
     {
-      "id": 3,
-      "title": "my best third note ever",
-      "snippet": "some snippet here"
-    },
-    {
-      "id": 4,
-      "title": "my best note ever",
-      "snippet": "some snippet here"
+      "title": "TODO: study stuff",
+      "body": "* learn computer science\n* do something else\n* and so on...",
+      "updatedAt": "2022-07-04T04:08:32.350Z",
+      "id": 9
     }
   ]
 }
