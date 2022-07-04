@@ -7,6 +7,7 @@ import {
   deleteNote as deleteNoteApi,
 } from "../api/noteApi";
 import { INoteDetailed } from "../features/Note/interfaces/INote";
+import useRefreshNoteSnippets from "../features/SideControls/hooks/useRefreshNoteSnippets";
 
 export enum cacheKeys {
   NOTE_SNIPPETS = "noteSnippets",
@@ -33,26 +34,37 @@ export const useFetchNoteDetailed = (id: INoteDetailed["id"]) => {
 };
 
 export const useCreateNote = () => {
+  const refreshNoteSnippets = useRefreshNoteSnippets();
   const { mutate: createNote, ...rest } = useMutation<
     Awaited<ReturnType<typeof createNoteApi>>,
     Error,
     Parameters<typeof createNoteApi>,
     unknown
-  >(async (args) => createNoteApi(...args));
+  >(async (args) => createNoteApi(...args), {
+    onSuccess: () => {
+      refreshNoteSnippets();
+    },
+  });
   return { ...rest, createNote };
 };
 
 export const useEditNote = () => {
+  const refreshNoteSnippets = useRefreshNoteSnippets();
   const { mutate: editNote, ...rest } = useMutation<
     Awaited<ReturnType<typeof editNoteApi>>,
     Error,
     Parameters<typeof editNoteApi>,
     unknown
-  >(async (args) => editNoteApi(...args));
+  >(async (args) => editNoteApi(...args), {
+    onSuccess: () => {
+      refreshNoteSnippets();
+    },
+  });
   return { ...rest, editNote };
 };
 
 export const useDeleteNote = () => {
+  const refreshNoteSnippets = useRefreshNoteSnippets();
   const {
     mutate: deleteNote,
     data: resDataDelete,
@@ -62,6 +74,10 @@ export const useDeleteNote = () => {
     Error,
     Parameters<typeof deleteNoteApi>,
     unknown
-  >(async (args) => deleteNoteApi(...args));
+  >(async (args) => deleteNoteApi(...args), {
+    onSuccess: () => {
+      refreshNoteSnippets();
+    },
+  });
   return { ...rest, resDataDelete, deleteNote };
 };

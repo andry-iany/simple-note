@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDeleteNote, useFetchNoteDetailed } from "../../../hooks/useNoteApi";
-import useRefreshNoteSnippets from "../../SideControls/hooks/useRefreshNoteSnippets";
 
 const useNoteDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [noteId, setNoteId] = useState<string | number>(0);
   const res = useFetchNoteDetailed(noteId);
-  const { deleteNote, resDataDelete } = useDeleteNote();
-  const refreshNoteSnippets = useRefreshNoteSnippets();
+  const { deleteNote, isSuccess: isDeleteSuccess } = useDeleteNote();
 
   useEffect(() => {
     setNoteId(params.id || 0);
@@ -21,11 +19,8 @@ const useNoteDetail = () => {
   };
 
   useEffect(() => {
-    if (resDataDelete) {
-      refreshNoteSnippets();
-      navigate("/");
-    }
-  }, [resDataDelete]);
+    if (isDeleteSuccess) navigate("/");
+  }, [isDeleteSuccess]);
 
   return {
     ...res,
